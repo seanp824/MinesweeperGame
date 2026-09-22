@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 gameOver = true;
                 won = false;
                 stopTimer();
+                revealAllCells();
                 waitingForTap = true;
             } else {
                 revealCell(row, col);
@@ -176,6 +177,22 @@ public class MainActivity extends AppCompatActivity {
             for (int dr = -1; dr <= 1; dr++) {
                 for (int dc = -1; dc <= 1; dc++) {
                     revealCell(row + dr, col + dc);
+                }
+            }
+        }
+    }
+
+    private void revealAllCells() {
+        for (int r = 0; r < GRID_SIZE; r++) {
+            for (int c = 0; c < GRID_SIZE; c++) {
+                if (mines[r][c]) {
+                    cells[r][c].setText("💣");
+                    cells[r][c].setBackgroundColor(Color.RED);
+                } else if (!revealed[r][c]) {
+                    cells[r][c].setBackgroundColor(Color.WHITE);
+                    if (adjacentCounts[r][c] > 0) {
+                        cells[r][c].setText(String.valueOf(adjacentCounts[r][c]));
+                    }
                 }
             }
         }
