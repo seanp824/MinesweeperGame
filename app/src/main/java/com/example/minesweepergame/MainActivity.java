@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     gameOver = true;
                     won = true;
                     stopTimer();
+                    revealAllCells();
                     waitingForTap = true;
                 }
             }
